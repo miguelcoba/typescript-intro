@@ -44,16 +44,589 @@
 					<h1>TypeScript</h1>
 					<h3>Introduction</h3>
 					<p>
-						<small><a href="http://miguel.leugim.com.mx">Miguel Cobá</a> / <a href="http://twitter.com/MiguelCobaMtz">@MiguelCobaMtz</a></small>
+						<small><a href="http://miguelcoba.github.io">Miguel Cobá</a> / <a href="http://twitter.com/MiguelCobaMtz">@MiguelCobaMtz</a></small>
 					</p>
 				</section>
 
 				<section>
 					<section>
 						<h1>TypeScript</h1>
-						<p></p>
+						<h3>JavaScript that scales</h3>
+						<p>TypeScript is a typed superset of Javascript that compiles to plain JavaScript</p>
+						<p>Any browser. Any host. Any OS. Open source</p>
 					</section>
 					<section>
+						<h1>Why?</h1>
+						<p>Making JavaScript scale</p>
+						<p>Easier to build and maintain medium to large applications</p>
+					</section>
+					<section>
+						<h1>Advantages</h1>
+						<h3>Great tooling enabled by static types</h3>
+            <ul>
+              <li>Statement completion</li>
+              <li>Go to definition</li>
+						  <li>Refactorings</li>
+            </ul>
+					</section>
+					<section>
+						<h1>Advantages</h1>
+						<h3>Features from the future, today</h3>
+            <ul>
+              <li>Classes</li>
+              <li>Lambda function</li>
+            </ul>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1>Install</h1>
+						<pre><code class="shell" data-trim style="font-size: 18px;">
+npm install -g typescript
+						</code></pre>
+					</section>
+					<section>
+						<h1>Verify installation</h1>
+						<pre><code class="shell" data-trim style="font-size: 18px;">
+tsc -v
+Version 1.8.10
+						</code></pre>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1>Language</h1>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1>Type annotations</h1>
+            <p>Lightweight ways to record the intended contract of the function or variable</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1>Basic Types</h1>
+					</section>
+
+					<section>
+						<h1>boolean</h1>
+            <p></p>
+						<pre><code class="typescript" data-trim style="font-size: 18px;">
+let isEnabled: boolean = false;
+						</code></pre>
+					</section>
+
+					<section>
+						<h1>number</h1>
+            <p></p>
+						<pre><code class="typescript" data-trim style="font-size: 18px;">
+let decimal: number = 6;
+let hex: number = 0xf00d;
+let binary: number = 0b1010;
+let octal: number = 0o744;
+						</code></pre>
+					</section>
+
+					<section>
+						<h1>string</h1>
+            <h3>Normal strings</h3>
+            <ul>
+              <li>Delimited by double quotes (") or single quotes (')</li>
+            </ul>
+						<pre><code class="typescript" data-trim style="font-size: 18px;">
+let name: string = "John";
+name = 'John Smith';
+						</code></pre>
+					</section>
+
+					<section>
+						<h1>string</h1>
+            <h3>Template strings</h3>
+
+            <ul>
+              <li>Delimited by (`)</li>
+              <li>Can contain embedded expressions: ${ expr }</li>
+            </ul>
+						<pre><code class="typescript" data-trim style="font-size: 18px;">
+let fullName: string = `Miguel Cobá`;
+let age: number = 36;
+let greeting: string = `Hello, my name is ${ fullName }.
+
+I will be ${ age + 1 } years old next month.`
+						</code></pre>
+					</section>
+
+					<section>
+						<h1>array</h1>
+            <p>All the elements must be of the same type</p>
+            <h4>Type + []</h4>
+						<pre><code class="typescript" data-trim style="font-size: 18px;">
+let list: number[] = [1, 2, 3];
+						</code></pre>
+
+            <h4>Generic array type: Array&lt;elemType&gt;</h4>
+						<pre><code class="typescript" data-trim style="font-size: 18px;">
+let list: Array&lt;number&gt; = [1, 2, 3];
+						</code></pre>
+					</section>
+
+					<section>
+						<h1>tuple</h1>
+            <p>Allow you to express an array where the type of a fixed number of elements is known, but need not be the same</p>
+						<pre><code class="typescript" data-trim style="font-size: 18px;">
+// Declare a tuple type for a pair of string and number
+let x: [string, number];
+// Initialize it
+x = ["hello", 10]; // OK
+// Initialize it incorrectly
+x = [10, "hello"]; // Error
+						</code></pre>
+					</section>
+
+					<section>
+						<h1>enum</h1>
+            <p>An enum is a way of giving more friendly names to sets of numeric values</p>
+						<pre><code class="typescript" data-trim style="font-size: 18px;">
+// By default, enums begin numbering their members starting at 0
+enum Color {Red, Green, Blue};
+let c: Color = Color.Green;
+
+// You can change this by manually setting the value of one of the members
+enum Color {Red = 1, Green, Blue};
+let c: Color = Color.Green;
+
+// manually set them
+enum Color {Red = 1, Green = 2, Blue = 4};
+let c: Color = Color.Green;
+						</code></pre>
+					</section>
+
+					<section>
+						<h1>any</h1>
+            <p>Allows to opt-out of type-checking and let the values pass through compile-time checks</p>
+						<pre><code class="typescript" data-trim style="font-size: 18px;">
+let notSure: any = 4;
+notSure = "maybe a string instead";
+notSure = false; // okay, definitely a boolean
+
+let list: any[] = [1, true, "free"];
+
+list[1] = 100;
+						</code></pre>
+					</section>
+
+					<section>
+						<h1>void</h1>
+            <p>Opposite of any: the absence of having any type at all</p>
+						<pre><code class="typescript" data-trim style="font-size: 18px;">
+function warnUser(): void {
+    alert("This is my warning message");
+}
+
+// Void variables are not useful because only undefined or null can be assigned to them:
+let unusable: void = undefined;
+						</code></pre>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1>Type assertions</h1>
+            <p>When you know the type of some entity could be more specific than its current type</p>
+            <p>Is like a type cast in other languages</p>
+					</section>
+
+					<section>
+						<h1>Angle bracket syntax</h1>
+						<pre><code class="typescript" data-trim style="font-size: 18px;">
+let someValue: any = "this is a string";
+
+let strLength: number = (&lt;string&gt;someValue).length;
+						</code></pre>
+					</section>
+
+					<section>
+            <h1><i>as</i> syntax</h1>
+						<pre><code class="typescript" data-trim style="font-size: 18px;">
+let someValue: any = "this is a string";
+
+let strLength: number = (someValue as string).length;
+						</code></pre>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1>Variable declarations</h1>
+					</section>
+
+					<section>
+            <h1><i>var</i> declarations</h1>
+            <p><i>var</i> declarations are accessible anywhere within their containing function, module, namespace, or global scope regardless of the containing block</p>
+            <p>Some people call this var-scoping or function-scoping</p>
+						<pre><code class="typescript" data-trim style="font-size: 18px;">
+function f(shouldInitialize: boolean) {
+  if (shouldInitialize) {
+    var x = 10;
+  }
+
+  return x;
+}
+
+f(true);  // returns '10'
+f(false); // returns 'undefined'
+            </code></pre>
+					</section>
+
+					<section>
+            <h1><i>let</i> declarations</h1>
+            <p>Use lexical-scoping or block-scoping</p>
+            <p>Block-scoped variables are not visible outside of their nearest containing block or for-loop</p>
+						<pre><code class="typescript" data-trim style="font-size: 18px;">
+function f(input: boolean) {
+    let a = 100;
+
+    if (input) {
+        // Still okay to reference 'a'
+        let b = a + 1;
+        return b;
+    }
+
+    // Error: 'b' doesn't exist here
+    return b;
+}
+						</code></pre>
+					</section>
+
+					<section>
+            <h1><i>let</i> declarations</h1>
+            <p>They can’t be read or written to before they’re actually declared</p>
+						<pre><code class="typescript" data-trim style="font-size: 18px;">
+a++; // illegal to use 'a' before it's declared;
+let a;
+						</code></pre>
+					</section>
+
+					<section>
+						<h1>Re-declarations and Shadowing</h1>
+            <p>Valid with var</p>
+						<pre><code class="typescript" data-trim style="font-size: 18px;">
+// All the x refer to same variable in function scope
+function f(x) {
+    var x;
+    var x;
+
+    if (true) {
+        var x;
+    }
+}
+						</code></pre>
+					</section>
+
+					<section>
+						<h1>Re-declarations and Shadowing</h1>
+            <p>Invalid with let</p>
+						<pre><code class="typescript" data-trim style="font-size: 18px;">
+let x = 10;
+let x = 20; // error: can't re-declare 'x' in the same scope
+
+function f(x) {
+    let x = 100; // error: interferes with parameter declaration
+}
+
+function g() {
+    let x = 100;
+    var x = 100; // error: can't have both declarations of 'x'
+}
+						</code></pre>
+					</section>
+
+					<section>
+						<h1>Re-declarations and Shadowing</h1>
+            <p>Redeclaration is valid if in a different nested block</p>
+						<pre><code class="typescript" data-trim style="font-size: 18px;">
+function f(condition, x) {
+    if (condition) {
+        let x = 100;    // shadowing
+        return x;
+    }
+
+    return x;
+}
+
+f(false, 0); // returns '0'
+f(true, 0);  // returns '100'
+						</code></pre>
+					</section>
+
+					<section>
+						<h1><i>const</i> declarations</h1>
+            <p>They are like let declaration</p>
+						<p>Their value cannot be changed once they are bound</p>
+						<pre><code class="typescript" data-trim style="font-size: 18px;">
+const numLivesForCat = 9;
+						</code></pre>
+					</section>
+
+					<section>
+						<h1><i>const</i> declarations</h1>
+						<p>Doesn't mean that the values they refer to are immutable</p>
+						<pre><code class="typescript" data-trim style="font-size: 18px;">
+const numLivesForCat = 9;
+const kitty = {
+    name: "Aurora",
+    numLives: numLivesForCat,
+}
+
+// Error
+kitty = {
+    name: "Danielle",
+    numLives: numLivesForCat
+};
+
+// all "okay"
+kitty.name = "Rory";
+kitty.name = "Kitty";
+kitty.name = "Cat";
+kitty.numLives--;
+						</code></pre>
+					</section>
+
+					<section>
+						<h1>let vs. const</h1>
+            <p>Principle of least privilege: all declarations other than those you plan to modify should use const</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1>Destructuring</h1>
+            <p>The destructuring assignment syntax is an expression that makes it possible to extract data from arrays or objects into distinct variables</p>
+					</section>
+
+					<section>
+						<h1>Arrays</h1>
+						<pre><code class="typescript" data-trim style="font-size: 18px;">
+let input = [1, 2];
+let [first, second] = input;
+console.log(first); // outputs 1
+console.log(second); // outputs 2
+						</code></pre>
+					</section>
+
+					<section>
+						<h1>Existing variables</h1>
+						<pre><code class="typescript" data-trim style="font-size: 18px;">
+// swap variables
+[first, second] = [second, first];
+						</code></pre>
+					</section>
+
+					<section>
+						<h1>Function parameters</h1>
+						<pre><code class="typescript" data-trim style="font-size: 18px;">
+function f([first, second]: [number, number]) {
+    console.log(first);
+    console.log(second);
+}
+f(input);
+						</code></pre>
+					</section>
+
+					<section>
+						<h1>rest parameters</h1>
+            <p>You can create a variable for the remaining items in a list using the syntax ...name</p>
+						<pre><code class="typescript" data-trim style="font-size: 18px;">
+let [first, ...rest] = [1, 2, 3, 4];
+console.log(first); // outputs 1
+console.log(rest); // outputs [ 2, 3, 4 ]
+						</code></pre>
+					</section>
+
+					<section>
+						<h1>rest parameters</h1>
+            <p>You can ignore parameters</p>
+						<pre><code class="typescript" data-trim style="font-size: 18px;">
+let [first] = [1, 2, 3, 4];
+console.log(first); // outputs 1
+
+let [, second, , fourth] = [1, 2, 3, 4];
+						</code></pre>
+					</section>
+
+					<section>
+						<h1>Object destructuring</h1>
+						<pre><code class="typescript" data-trim style="font-size: 18px;">
+let o = {
+    a: "foo",
+    b: 12,
+    c: "bar"
+}
+let {a, b} = o; // This creates new variables a and b from o.a and o.b.
+						</code></pre>
+					</section>
+
+					<section>
+						<h1>Property renaming</h1>
+            <p>You can also give different names to properties</p>
+						<pre><code class="typescript" data-trim style="font-size: 18px;">
+let {a: newName1, b: newName2} = o;
+
+// is equivalent to
+let newName1 = o.a;
+let newName2 = o.b;
+						</code></pre>
+					</section>
+
+					<section>
+						<h1>Property renaming</h1>
+            <p>The type of the object needs to be written after the destructuring</p>
+						<pre><code class="typescript" data-trim style="font-size: 18px;">
+let {a, b: newName}: {a: string, b: number} = o;
+						</code></pre>
+					</section>
+
+					<section>
+						<h1>Default values</h1>
+            <p>Default values let you specify a default value in case a property is undefined</p>
+						<pre><code class="typescript" data-trim style="font-size: 18px;">
+function keepWholeObject(wholeObject: {a: string, b?: number}) {
+    let {a, b = 1001} = wholeObject;	// b will be 1001 if wholeObject.b is undefined
+}
+						</code></pre>
+					</section>
+
+					<section>
+						<h1></h1>
+            <p></p>
+						<pre><code class="typescript" data-trim style="font-size: 18px;">
+						</code></pre>
+					</section>
+
+					<section>
+						<h1></h1>
+            <p></p>
+						<pre><code class="typescript" data-trim style="font-size: 18px;">
+						</code></pre>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1></h1>
+            <p></p>
+						<pre><code class="typescript" data-trim style="font-size: 18px;">
+						</code></pre>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1></h1>
+						<p></p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1></h1>
+						<p></p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1></h1>
+						<p></p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1></h1>
+						<p></p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1></h1>
+						<p></p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1></h1>
+						<p></p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1></h1>
+						<p></p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1></h1>
+						<p></p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1></h1>
+						<p></p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1></h1>
+						<p></p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1></h1>
+						<p></p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1></h1>
+						<p></p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1></h1>
+						<p></p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1></h1>
+						<p></p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1></h1>
+						<p></p>
 					</section>
 				</section>
 
