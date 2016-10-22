@@ -1,15 +1,17 @@
-# Ember.js Introduction
+# TypeScript Introduction
 
-A practical introduction to [ember.js](http://emberjs.com/).
+A practical introduction to [TypeScript](http://www.typescriptlang.org/).
 
 ## License
 
-Tutorial content is licensed under a 
+Slides content licensed under a
 
 [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/)
 
-Code examples are
+Code examples are licensed under the
 
-MIT licensed
+MIT license
 
-Copyright (C) 2015 Miguel Cobá, http://miguel.leugim.com.mx
+Reveal.js code is licensed under the
+
+MIT license
